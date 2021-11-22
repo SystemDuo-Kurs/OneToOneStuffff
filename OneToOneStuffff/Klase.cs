@@ -6,6 +6,27 @@ using System.Threading.Tasks;
 
 namespace OneToOneStuffff
 {
+    public class ArtikalKaRacunu
+    {
+        public Racun Racun { get; set; }
+        public Artikal Artikal { get; set; }
+        public int Kolicina { get; set; }
+    }
+    public class Artikal
+    {
+        public int Id { get; set; }
+        public decimal Cena { get; set; }
+        public string Naziv { get; set; }
+        public List<Racun> Racuni { get; set; } = new();
+        public List<ArtikalKaRacunu> AKR { get; set; } = new();
+    }
+    public class Racun
+    {
+        public int Id { get; set; }
+        public DateTime VremeIzdavanja { get; set; } = DateTime.Now;
+        public List<Artikal> Artikli { get; set; }  = new();
+        public List<ArtikalKaRacunu> AKR { get; set; } = new();
+    }
     public class Knjiga
     {
         public int Id { get; set; }

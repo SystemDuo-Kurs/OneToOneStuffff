@@ -39,8 +39,13 @@ namespace OneToOneStuffff
 
             var knji = new Knjiga { Naziv = "Teeest" };
             osobe.First().Knjige.Add(knji);
-        
 
+            var rac = new Racun();
+            var art = new Artikal { Naziv = "Test", Cena = (decimal)45.50 };
+            var art2 = new Artikal { Naziv = "Test2", Cena = (decimal)55.50 };
+            rac.AKR.Add(new ArtikalKaRacunu { Artikal = art, Kolicina = 5 });
+            rac.AKR.Add(new ArtikalKaRacunu { Artikal = art2, Kolicina = 1 });
+            _kon.Add(rac);
 
             _kon.SaveChanges();
         }

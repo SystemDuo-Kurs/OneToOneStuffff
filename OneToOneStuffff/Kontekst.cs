@@ -11,6 +11,10 @@ namespace OneToOneStuffff
     {
         public DbSet<Osoba> Osobe { get; set; }
         public DbSet<Adresa> Adrese { get; set; }
+        
+        public DbSet<Knjiga> Knjigas { get; set; }
+        public DbSet<Racun> Racuni { get; set; }
+        public DbSet<Artikal> Artikli { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -23,6 +27,8 @@ namespace OneToOneStuffff
             modelBuilder.Entity<Osoba>().HasKey(o => o.Id);
             modelBuilder.Entity<Adresa>().HasKey(a => a.Id);
             modelBuilder.Entity<Knjiga>().HasKey(k => k.Id);
+            modelBuilder.Entity<Artikal>().HasKey(a => a.Id);
+            modelBuilder.Entity<Racun>().HasKey(r => r.Id);
 
             modelBuilder.Entity<Osoba>().HasOne(o => o.Adresa)
                 .WithOne(a => a.Osoba)
@@ -31,6 +37,11 @@ namespace OneToOneStuffff
             modelBuilder.Entity<Osoba>().HasMany(o => o.Knjige)
                 .WithOne(k => k.Osoba).HasForeignKey(k => k.Osoba_Id);
 
+            modelBuilder.Entity<Racun>().HasMany(r => r.Artikli)
+                .WithMany(a => a.Racuni)
+                .UsingEntity<ArtikalKaRacunu>(
+                    ar => ar.HasOne(ar => ar.Artikal).WithMany(a => a.AKR),
+                    ar => ar.HasOne(ar => ar.Racun).WithMany(r => r.AKR));
 
             modelBuilder.Entity<Adresa>().HasData
             (
