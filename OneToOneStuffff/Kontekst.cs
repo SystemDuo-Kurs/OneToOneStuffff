@@ -22,10 +22,15 @@ namespace OneToOneStuffff
         {
             modelBuilder.Entity<Osoba>().HasKey(o => o.Id);
             modelBuilder.Entity<Adresa>().HasKey(a => a.Id);
+            modelBuilder.Entity<Knjiga>().HasKey(k => k.Id);
 
             modelBuilder.Entity<Osoba>().HasOne(o => o.Adresa)
                 .WithOne(a => a.Osoba)
                 .HasForeignKey<Osoba>(o => o.Adresa_Id);
+
+            modelBuilder.Entity<Osoba>().HasMany(o => o.Knjige)
+                .WithOne(k => k.Osoba).HasForeignKey(k => k.Osoba_Id);
+
 
             modelBuilder.Entity<Adresa>().HasData
             (

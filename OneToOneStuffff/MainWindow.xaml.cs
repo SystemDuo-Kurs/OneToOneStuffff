@@ -36,6 +36,13 @@ namespace OneToOneStuffff
             List<Osoba> osobe = _kon.Osobe.ToList();
 
             _kon.Adrese.ToList();
+
+            var knji = new Knjiga { Naziv = "Teeest" };
+            osobe.First().Knjige.Add(knji);
+        
+
+
+            _kon.SaveChanges();
         }
     }
 }

@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace OneToOneStuffff
 {
+    public class Knjiga
+    {
+        public int Id { get; set; }
+        public string Naziv { get; set; }
+
+        public Osoba Osoba { get; set; }
+        public int Osoba_Id { get; set; }
+    }
     public class Osoba
     {
         public int Id;
@@ -14,6 +22,8 @@ namespace OneToOneStuffff
 
         public Adresa Adresa { get; set; }
         public int Adresa_Id { get; set; }
+
+        public List<Knjiga> Knjige { get; set; } = new();
     }
     
     public class Adresa
